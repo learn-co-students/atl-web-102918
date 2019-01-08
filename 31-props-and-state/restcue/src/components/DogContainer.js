@@ -7,18 +7,25 @@ class DogContainer extends React.Component {
   constructor() {
     super()
     this.state = {
-      currentDog: mockDogs[0]
+      dogs: mockDogs,
+      currentDogId: 1
     }
   }
 
-    render() {
-      return (
-        <div className="ui grid">
-          <DogList width="six" />
-          <DogDetail width="ten" dog={this.state.currentDog} />
-        </div>
-      )
-    }
+  // a method that takes an Id and sets the currentDogId to that value
+  selectDog(id) {
+    this.setState({ currentDogId: parseInt(id) })
+  }
+
+  render() {
+    let currentDog = this.state.dogs.find(dog => dog.id == this.state.currentDogId)
+    return (
+      <div className="ui grid">
+        <DogList width="six" dogs={this.state.dogs} selectDog={(id) => this.selectDog(id)} />
+        <DogDetail width="ten" dog={currentDog} />
+      </div>
+    )
+  }
 }
 
 export default DogContainer;

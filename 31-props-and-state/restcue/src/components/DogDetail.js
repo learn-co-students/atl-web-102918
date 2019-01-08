@@ -1,24 +1,25 @@
 import React from 'react';
 
 const DogDetail = (props) => {
+  console.log(props)
   return (
     <div className={`${props.width} wide column`}>
-      <div class="ui card">
-        <div class="image">
+      <div className="ui card">
+        <div className="image">
           <img src={props.dog.imageUrl} />
         </div>
-        <div class="content">
-          <a class="header">{props.dog.name}</a>
-          <div class="meta">
-            <span class="date">{props.dog.age}</span>
+        <div className="content">
+          <a className="header">{props.dog.name}</a>
+          <div className="meta">
+            <span className="date">{props.dog.age}</span>
           </div>
-          <div class="description">
+          <div className="description">
             {props.dog.description}
           </div>
         </div>
-        <div class="extra content">
+        <div className="extra content">
           <a>
-            <i class="user icon"></i>
+            <i className="user icon"></i>
             {props.dog.likes}
           </a>
         </div>

@@ -30,7 +30,6 @@ import React from 'react';
 // The render method DOES NOT TAKE PROPS!
 class Navbar extends React.Component {
   render() {
-    console.log(this)
     const menuClasses = `ui inverted ${this.props.color} menu`
     const iconClasses = `icon ${this.props.icon}`
     return (
