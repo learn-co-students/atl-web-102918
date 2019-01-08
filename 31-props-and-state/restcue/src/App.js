@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/Navbar'
+import DogContainer from './components/DogContainer'
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar color="teal" icon="paw" title="RESTcue" description={desc} />
+        <DogContainer />
       </div>
     );
   }
