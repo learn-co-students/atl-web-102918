@@ -5,7 +5,7 @@ const DogDetail = (props) => {
   return (
     <div className={`ui card ${props.width} wide column`}>
       <div className="image">
-        <img src={props.dog.imageUrl} />
+        <img src={props.dog.image_url} />
       </div>
       <div className="content">
         <a className="header">{props.dog.name}</a>

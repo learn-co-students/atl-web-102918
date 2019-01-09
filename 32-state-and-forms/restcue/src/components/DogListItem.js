@@ -7,7 +7,7 @@ const DogListItem = (props) => {
   }
   return (
     <div className="item" onClick={clickHandler}>
-      <img className="ui avatar image" src={props.dog.imageUrl} />
+      <img className="ui avatar image" src={props.dog.image_url} />
       <div className="content">
         <a className="header">{props.dog.name}</a>
       </div>
