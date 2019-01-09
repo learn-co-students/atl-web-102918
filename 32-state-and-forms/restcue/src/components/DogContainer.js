@@ -1,7 +1,6 @@
 import React from 'react';
 import DogList from './DogList'
 import DogDetail from './DogDetail'
-import mockDogs from '../mock_data/dogs.js'
 
 class DogContainer extends React.Component {
 
