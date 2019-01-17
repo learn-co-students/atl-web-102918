@@ -7,6 +7,10 @@
 * Anyone can view dogs or the about page.
 * Only logged in users can see or submit the form.
 * Maybe we can add a profile page. 😎
+* Should be able to logout if logged in and vice versa.
+
+
+
 
 ### High-Level Reminders
 
