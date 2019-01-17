@@ -1,21 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import DogListItem from './DogListItem';
 
 const DogList = (props) => {
-  console.log("dog list", props)
-  // TODO: add click handler for the new dog item
   return (
     <div className={`${props.width} wide column`}>
       <div className="ui huge divided animated list">
         {props.dogs.map(x => <DogListItem dog={x} selectDog={props.selectDog} />)}
-        <div className="item" onClick={props.toggleForm}>
+        <Link to="/dogs/new" className="item">
           <div className="content">
             <a class="header">
               <i class="plus circle icon teal"></i>
               New Dog
             </a>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   )

@@ -19,7 +19,7 @@ class DogForm extends React.Component {
       },
       body: JSON.stringify(this.state)
     }).then(res => res.json())
-    // .then(json => ????) add the new dog to my container dogs??
+    .then(dog => this.props.addDog(dog))
   }
 
   render = () =>

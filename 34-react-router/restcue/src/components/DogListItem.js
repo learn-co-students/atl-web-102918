@@ -1,17 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DogListItem = (props) => {
-  console.log("dog list item", props)
-  let clickHandler = (event) => {
-    props.selectDog(props.dog.id)
-  }
   return (
-    <div className="item" onClick={clickHandler}>
+    <Link to={`/dogs/${props.dog.id}`} className="item">
       <img className="ui avatar image" src={props.dog.image_url} />
       <div className="content">
         <a className="header">{props.dog.name}</a>
       </div>
-    </div>
+    </Link>
   )
 }
 

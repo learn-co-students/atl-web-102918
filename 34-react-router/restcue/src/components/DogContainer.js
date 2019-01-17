@@ -1,4 +1,6 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom'
+
 import DogList from './DogList'
 import DogDetail from './DogDetail'
 import DogForm from './DogForm'
@@ -6,9 +8,7 @@ import DogForm from './DogForm'
 class DogContainer extends React.Component {
 
   state = {
-      showForm: false,
-      dogs: [],
-      currentDogId: null
+      dogs: []
     }
 
   componentDidMount() {
@@ -17,23 +17,9 @@ class DogContainer extends React.Component {
       .then(json => this.setState({ dogs: json }))
   }
 
-  showForm = () => {
-    this.setState({ showForm: true })
-  }
-
-  selectDog = (id) => {
-    this.setState({ showForm: false, currentDogId: id })
-  }
-
-  rightPane = () => {
-    if (this.state.showForm) {
-      return <DogForm />
-    } else if (this.state.currentDogId) {
-      let currentDog = this.state.dogs.find(dog => dog.id == this.state.currentDogId)
-      return <DogDetail width="ten" dog={currentDog} />
-    } else {
-      return null
-    }
+  addDog = (dog) => {
+    let newDogs = this.state.dogs.concat(dog)
+    this.setState({ dogs: newDogs })
   }
 
   render = () => {
@@ -45,7 +31,15 @@ class DogContainer extends React.Component {
           selectDog={this.selectDog}
           toggleForm={this.showForm}
         />
-        {this.rightPane()}
+        <Switch>
+          <Route path="/dogs/new" render={() => {
+            return <DogForm addDog={this.addDog} />
+          }} />
+          <Route path="/dogs/:id" render={({ match }) => {
+            let dog = this.state.dogs.find(dog => dog.id == match.params.id)
+            return dog ? <DogDetail width="ten" dog={dog} /> : null;
+          }} />
+        </Switch>
       </div>
     )
   }

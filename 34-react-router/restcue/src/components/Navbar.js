@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // UGH! Raw createElement calls hurt. JSX is way mo betta.
 // return React.createElement("div", { className: `ui inverted ${props.color} menu` },
@@ -34,13 +35,16 @@ class Navbar extends React.Component {
     const iconClasses = `icon ${this.props.icon}`
     return (
       <div className={menuClasses}>
-        <a href="https://google.com" className="item">
+        <Link to="/" className="item">
           <h2 className="ui header">
             <i className={iconClasses}></i>
             <div className="content">{this.props.title}</div>
             <div className="sub header">{this.props.description}</div>
           </h2>
-        </a>
+        </Link>
+        <Link to="/about" className="item">
+          About Us
+        </Link>
       </div>
   )
   }
