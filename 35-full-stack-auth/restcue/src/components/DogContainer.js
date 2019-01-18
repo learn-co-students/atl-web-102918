@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import API from '../services/Backend';
 import DogList from './DogList'
@@ -33,9 +33,11 @@ class DogContainer extends React.Component {
           toggleForm={this.showForm}
         />
         <Switch>
-          <Route path="/dogs/new" render={() => {
-            return <DogForm addDog={this.addDog} />
-          }} />
+          <Route path="/dogs/new" render={() => (
+            localStorage.getItem("name") ? (
+              <DogForm addDog={this.addDog} />
+            ) : <Redirect to="/login" />
+          )} />
           <Route path="/dogs/:id" render={({ match }) => {
             let dogId = parseInt(match.params.id)
             let dog = this.state.dogs.find(dog => dog.id === dogId)

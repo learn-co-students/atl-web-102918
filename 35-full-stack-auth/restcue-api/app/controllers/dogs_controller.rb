@@ -1,4 +1,6 @@
 class DogsController < ApplicationController
+  before_action :authenticate!, only: [:create]
+  
   def index
     @dogs = Dog.all
     render json: @dogs, status: :ok

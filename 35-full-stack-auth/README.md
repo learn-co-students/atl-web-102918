@@ -2,14 +2,14 @@
 
 ### Objectives
 
-* Only shelter staff should be able to add dogs.
 * Once I'm logged in I should stay logged in.
 * Anyone can view dogs or the about page.
-* Only logged in users can see or submit the form.
-* Maybe we can add a profile page. 😎
 * Should be able to logout if logged in and vice versa.
 
-
+TODO:
+* Only shelter staff should be able to add dogs.
+* Only logged in users can see or submit the form.
+* Maybe we can add a profile page. 😎
 
 
 ### High-Level Reminders
@@ -134,11 +134,21 @@ In summary:
 - Read it again, trust that no one else can tamper with it
 
 ### In React...
+
 #### Sign In
 1. Login Form
 2. Send the username and password
+  * What about displaying errors for incorrect login?
+  * console.log the json. either add "error" state or conditionalize.
 3. Store the token (and user info)
-4. Send the token on future requests
+  * Probably use react-router history.push to go to "next page".
+  * Might need to use withRouter... [withRouter](https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/withRouter.md)
+4. Fix create endpoint on restcue-API to be authenticated
+  * Try to add a dog without token, it should fail!
+    * Potentially talk about `.catch`? Eh, or not.
+  * Add the token and a current_user method to restcue-API.
+5. Probably use <Redirect> if trying to render DogForm without user
+6. We could add a profile page if we want.
 
 #### Already Signed In
 1. On mount, check if there is a token

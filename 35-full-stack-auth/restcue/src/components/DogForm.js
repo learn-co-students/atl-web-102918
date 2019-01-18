@@ -15,7 +15,8 @@ class DogForm extends React.Component {
     fetch("http://localhost:3000/dogs", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Token": localStorage.getItem("token")
       },
       body: JSON.stringify(this.state)
     }).then(res => res.json())

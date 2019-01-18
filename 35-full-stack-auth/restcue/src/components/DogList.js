@@ -7,15 +7,15 @@ const DogList = (props) => {
   return (
     <div className={`${props.width} wide column`}>
       <div className="ui huge divided animated list">
-        {props.dogs.map(x => <DogListItem dog={x} selectDog={props.selectDog} />)}
-        <Link to="/dogs/new" className="item">
+        {props.dogs.map(x => <DogListItem key={x.id} dog={x} selectDog={props.selectDog} />)}
+        <span to="/dogs/new" className="item">
           <div className="content">
-            <a class="header">
-              <i class="plus circle icon teal"></i>
+            <Link to="/dogs/new" className="header">
+              <i className="plus circle icon teal"></i>
               New Dog
-            </a>
+            </Link>
           </div>
-        </Link>
+        </span>
       </div>
     </div>
   )

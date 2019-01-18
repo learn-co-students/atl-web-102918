@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import API from '../services/Backend';
 
 class Login extends Component {
@@ -20,11 +21,12 @@ class Login extends Component {
       localStorage.setItem("token", payload.token)
       localStorage.setItem("name", payload.name)
       this.props.updateUser(payload.name)
-      window.history.pushState("/", {}, null)
+      this.props.history.push("/")
     })
   }
 
   render() {
+    console.log(this.props)
     return (
       <form class="ui form" onSubmit={this.handleSubmit}>
         <div class="field">
@@ -44,4 +46,8 @@ class Login extends Component {
 
 }
 
-export default Login;
+console.log(Login)
+const LoginWithRouter = withRouter(Login)
+console.log(LoginWithRouter)
+
+export default LoginWithRouter;
