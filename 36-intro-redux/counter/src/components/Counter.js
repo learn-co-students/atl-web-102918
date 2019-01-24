@@ -1,19 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Store from '../store';
 
-class Counter extends Component {
-  state = {
-    count: 0
+const increment = () => {
+  Store.dispatch({ type: 'ADD_ONE' })
+}
+
+const decrement = () => {
+  Store.dispatch({ type: 'SUB_ONE' })
+}
+
+class Counter extends React.Component {
+  componentDidMount() {
+    Store.subscribe(() => this.forceUpdate())
   }
-
-  increment = () => this.setState({ count: this.state.count + 1 })
-  decrement = () => this.setState({ count: this.state.count - 1 })
 
   render() {
     return (
       <div className="Counter">
-        <h1>Count: {this.state.count}</h1>
-        <button onClick={this.decrement}> - </button>
-        <button onClick={this.increment}> + </button>
+        <h1>Count: {Store.getState().count}</h1>
+        <button onClick={decrement}> - </button>
+        <button onClick={increment}> + </button>
       </div>
     )
   }

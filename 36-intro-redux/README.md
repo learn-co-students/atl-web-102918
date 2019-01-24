@@ -1,8 +1,5 @@
 # Intro to Redux
 
-- What's hard about managing state in React
-- Introducing Redux
-
 - Building a flexible Counter with Redux
   1. `yarn add redux`
   2. Define our first "reducer" to update state.
