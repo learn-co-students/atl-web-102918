@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-// TODO: Make the form update the server and redux store
-// TODO: Redirect to homepage or login page if not logged in
+import { addDog } from '../actions';
 
 class DogForm extends React.Component {
 
   state = {
+    errors: "",
     image_url: "",
     name: "",
     age: "",
@@ -25,11 +24,27 @@ class DogForm extends React.Component {
       },
       body: JSON.stringify(this.state)
     }).then(res => res.json())
-    .then(dog => this.props.dispatch({ type: 'ADD_DOG', dog: dog }))
+    .then(dog => {
+      if (dog.errors === undefined) {
+        this.setState({ errors: "" })
+        this.props.dispatch(addDog(dog))
+      } else {
+        this.setState({ errors: dog.errors })
+      }
+    })
   }
 
   render = () =>
     <form class="ui form" onSubmit={this.saveDog}>
+    { this.state.errors ?
+      <div class="ui negative message">
+        <div class="header">
+          We couldn't save your data.
+        </div>
+        <p>{this.state.errors}</p>
+      </div> :
+      null
+    }
       <div class="field">
         <label>Name</label>
         <input type="text" name="name" placeholder="Name"

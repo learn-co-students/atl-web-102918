@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import API from '../services/Backend';
+import { loginSuccess } from '../actions';
+import { connect } from 'react-redux';
 
 class Login extends Component {
   state = {
@@ -20,13 +22,12 @@ class Login extends Component {
     .then(payload => {
       localStorage.setItem("token", payload.token)
       localStorage.setItem("name", payload.name)
-      this.props.updateUser(payload.name)
+      this.props.dispatch(loginSuccess(payload.name))
       this.props.history.push("/")
     })
   }
 
   render() {
-    console.log(this.props)
     return (
       <form class="ui form" onSubmit={this.handleSubmit}>
         <div class="field">
@@ -46,8 +47,4 @@ class Login extends Component {
 
 }
 
-console.log(Login)
-const LoginWithRouter = withRouter(Login)
-console.log(LoginWithRouter)
-
-export default LoginWithRouter;
+export default connect()(Login);

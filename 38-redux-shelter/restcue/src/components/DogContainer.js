@@ -6,13 +6,14 @@ import DogList from './DogList'
 import DogDetail from './DogDetail'
 import DogForm from './DogForm'
 import { connect } from 'react-redux';
+import { fetchedDogs } from '../actions';
 
 class DogContainer extends React.Component {
 
   componentDidMount() {
     fetch(`${API}/dogs`)
       .then(res => res.json())
-      .then(json => this.props.dispatch({ type: 'FETCHED_DOGS', dogs: json }))
+      .then(json => this.props.dispatch(fetchedDogs(json)))
   }
 
   render = () => {
