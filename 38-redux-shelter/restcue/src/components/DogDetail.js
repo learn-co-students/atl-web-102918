@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const DogDetail = (props) => {
+  if (props.dog === undefined) { return null; }
   return (
     <div className={`ui card ten wide column`}>
       <div className="image">
