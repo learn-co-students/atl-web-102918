@@ -25,3 +25,5 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+# Also ignore .env we might keep some tasty secrets in there, API keys, etc
+.env
