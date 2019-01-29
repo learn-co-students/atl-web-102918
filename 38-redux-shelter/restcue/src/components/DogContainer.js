@@ -5,48 +5,36 @@ import API from '../services/Backend';
 import DogList from './DogList'
 import DogDetail from './DogDetail'
 import DogForm from './DogForm'
+import { connect } from 'react-redux';
 
 class DogContainer extends React.Component {
-
-  state = {
-      dogs: []
-    }
 
   componentDidMount() {
     fetch(`${API}/dogs`)
       .then(res => res.json())
-      .then(json => this.setState({ dogs: json }))
-  }
-
-  addDog = (dog) => {
-    let newDogs = this.state.dogs.concat(dog)
-    this.setState({ dogs: newDogs })
+      .then(json => this.props.dispatch({ type: 'FETCHED_DOGS', dogs: json }))
   }
 
   render = () => {
     return (
       <div className="ui grid container">
-        <DogList
-          width="six"
-          dogs={this.state.dogs}
-          selectDog={this.selectDog}
-          toggleForm={this.showForm}
-        />
+        <DogList />
         <Switch>
           <Route path="/dogs/new" render={() => (
             localStorage.getItem("name") ? (
-              <DogForm addDog={this.addDog} />
+              <DogForm />
             ) : <Redirect to="/login" />
           )} />
-          <Route path="/dogs/:id" render={({ match }) => {
-            let dogId = parseInt(match.params.id)
-            let dog = this.state.dogs.find(dog => dog.id === dogId)
-            return dog ? <DogDetail width="ten" dog={dog} /> : null;
-          }} />
+          <Route path="/dogs/:id" component={DogDetail} />
         </Switch>
       </div>
     )
   }
 }
+
+// DogContainer won't re-render on redux state changes
+// (Because there's no mapStateToProps, so its props never change)
+// It does get access to store.dispatch() because of null mapDispatchToProps
+DogContainer = connect(null, null)(DogContainer);
 
 export default DogContainer;

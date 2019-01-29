@@ -1,9 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const DogDetail = (props) => {
-  console.log(props)
   return (
-    <div className={`ui card ${props.width} wide column`}>
+    <div className={`ui card ten wide column`}>
       <div className="image">
         <img alt="A magnificent doggo" src={props.dog.image_url} />
       </div>
@@ -26,4 +26,10 @@ const DogDetail = (props) => {
   )
 }
 
-export default DogDetail;
+const mapStateToProps = (state, ownProps) => {
+  const dogId = parseInt(ownProps.match.params.id)
+  const dog = state.dogs.find(x => x.id === dogId)
+  return { dog: dog }
+}
+
+export default connect(mapStateToProps)(DogDetail);

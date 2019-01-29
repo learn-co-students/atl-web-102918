@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const DogListItem = (props) => {
   return (
@@ -12,4 +13,10 @@ const DogListItem = (props) => {
   )
 }
 
-export default DogListItem;
+// ownProps are the props from a parent node
+const mapStateToProps = (state, ownProps) => {
+  let dog = state.dogs.find(x => x.id === ownProps.id)
+  return { dog: dog }
+}
+
+export default connect(mapStateToProps)(DogListItem);
