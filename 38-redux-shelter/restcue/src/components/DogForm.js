@@ -1,6 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+// TODO: Make the form update the server and redux store
+// TODO: Redirect to homepage or login page if not logged in
 
 class DogForm extends React.Component {
+
   state = {
     image_url: "",
     name: "",
@@ -20,7 +25,7 @@ class DogForm extends React.Component {
       },
       body: JSON.stringify(this.state)
     }).then(res => res.json())
-    .then(dog => this.props.addDog(dog))
+    .then(dog => this.props.dispatch({ type: 'ADD_DOG', dog: dog }))
   }
 
   render = () =>
@@ -45,4 +50,4 @@ class DogForm extends React.Component {
     </form>
 }
 
-export default DogForm;
+export default connect()(DogForm);

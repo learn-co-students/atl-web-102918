@@ -20,11 +20,7 @@ class DogContainer extends React.Component {
       <div className="ui grid container">
         <DogList />
         <Switch>
-          <Route path="/dogs/new" render={() => (
-            localStorage.getItem("name") ? (
-              <DogForm />
-            ) : <Redirect to="/login" />
-          )} />
+          <Route path="/dogs/new" component={DogForm} />
           <Route path="/dogs/:id" component={DogDetail} />
         </Switch>
       </div>
